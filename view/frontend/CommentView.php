@@ -15,7 +15,6 @@
             <textarea id="comment" name="comment"><?= htmlspecialchars($comment['comment']) ?></textarea>
         </div>
         <div>
-            <input type="hidden" name="post_id" value="<?= $comment['post_id'] ?>">
             <input type="submit" />
         </div>
     </form>

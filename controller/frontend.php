@@ -27,13 +27,10 @@ function addComment($postId, $author, $comment)
     $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
-    if($affectedLines === false)
-    {
+    if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
-    }
-    else
-    {
-        header('Location: index.php?action=post&id=' .$postId);
+    } else {
+        header('Location: index.php?action=post&id=' . $postId);
     }
 }
 function comment()
@@ -43,17 +40,18 @@ function comment()
     $comment = $commentManager->getComment($_GET['id']);
     require('view/frontend/CommentView.php');
 }
-function updateComment($commentId, $author, $comment, $postId)
+function updateComment($commentId, $author, $comment)
 {
     $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
+    /*var_dump($commentManager->getComment($_GET['id'])['post_id']); 
+    die();*/
+    $postId = $commentManager->getComment($_GET['id'])['post_id'];
     $updateLine = $commentManager->updateComment($commentId, $author, $comment);
 
-    if($updateLine === false)
-    {
+
+    if ($updateLine === false) {
         throw new Exception('Impossible de mettre à jour le commentaire !');
-    }
-    else
-    {
-        header('Location: index.php?action=post&id=' .$postId);
+    } else {
+        header('Location: index.php?action=post&id=' . $postId);
     }
 }
